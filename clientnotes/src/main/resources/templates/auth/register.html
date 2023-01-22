@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Register Note App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h3>Registration page</h3>
+        <form th:action="@{/register}" th:object="${user}" method="POST">
+            <div>
+                <label th:for="${('username')}">Username</label><br/>
+                <input type="text" th:field="*{username}" placeholder="Input username"/>
+            </div>
+            <br/>
+            <div>
+                <label th:for="${('password')}">Password</label><br/>
+                <input type="password" th:field="*{password}"/>
+            </div>
+            <br/>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

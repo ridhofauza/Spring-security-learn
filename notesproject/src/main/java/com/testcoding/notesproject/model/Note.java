@@ -8,6 +8,7 @@ package com.testcoding.notesproject.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -48,7 +49,7 @@ public class Note {
     @Column(columnDefinition = "DATETIME NULL")
     private LocalDateTime updatedAt;
     
-    @OneToMany(mappedBy = "note")
+    @OneToMany(mappedBy = "note", cascade = CascadeType.ALL)
     private List<Comment> comments;
     
 }

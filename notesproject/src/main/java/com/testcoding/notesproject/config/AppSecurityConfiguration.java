@@ -51,11 +51,13 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .authorizeRequests()
-//            .antMatchers(HttpMethod.POST, "/note").permitAll()
-//            .antMatchers("/note/**").hasRole("AUTHOR")
+            .antMatchers(HttpMethod.GET, "/user").hasAnyRole("ADMIN")
+            .antMatchers("/role/**").hasAnyRole("ADMIN")
+            .antMatchers(HttpMethod.GET, "/user/{id}").hasAnyRole("ADMIN", "AUTHOR")
+            .antMatchers(HttpMethod.PUT, "/user/{id}").hasAnyRole("ADMIN", "AUTHOR")
+            .antMatchers(HttpMethod.DELETE, "/user/{id}").hasAnyRole("ADMIN", "AUTHOR")
+            .antMatchers("/comment/**").hasAnyRole("ADMIN", "AUTHOR")
             .antMatchers("/note/**").hasAnyRole("ADMIN", "AUTHOR")
-//            .antMatchers("/user/**").hasRole("ADMIN")
-//            .anyRequest().authenticated()
             .anyRequest().permitAll()
             .and()
             .httpBasic();

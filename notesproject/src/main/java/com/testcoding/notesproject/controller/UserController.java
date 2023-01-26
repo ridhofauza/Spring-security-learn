@@ -48,10 +48,10 @@ public class UserController {
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
     }
     
-    @PostMapping
-    public ResponseEntity<UserResponse> create(@RequestBody UserRequest userReq) {
-        return new ResponseEntity<>(userService.create(userReq), HttpStatus.CREATED);
-    }
+//    @PostMapping
+//    public ResponseEntity<UserResponse> create(@RequestBody UserRequest userReq) {
+//        return new ResponseEntity<>(userService.create(userReq), HttpStatus.CREATED);
+//    }
     
     @PutMapping("/{id}")
     public ResponseEntity<UserResponse> update(@PathVariable Long id, @RequestBody UserRequest userReq) {

@@ -6,25 +6,21 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>NoteApp | User Data</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            tr, th, td {
-                border: 1px solid black;
-                padding: 2px;
-            }
-            th {
-                background-color: #f4f4f4;
-            }
-        </style>
-    </head>
-    <body>
-        <h2 style="text-align: center">Table User</h2>
-        <table style="border-collapse: collapse; margin: auto; min-width: 40%">
-            <thead>
+        <title>NoteApp | Data User</title>
+    <th:block th:insert="mainLayout.html :: head-section "></th:block>
+</head>
+<body>
+<th:block th:insert="mainLayout.html :: navbar-section "></th:block>
+
+<div class="container">
+    <div class="mt-5">
+        <h4>Data User</h4>
+    </div>
+    <div class="table-responsive mt-3">
+        <table class="table table-striped">
+            <thead class="table-dark">
                 <tr>
-                    <th>Id</th>
+                    <th>No</th>
                     <th>Username</th>
                     <th>Role</th>
                     <th>Aksi</th>
@@ -35,33 +31,42 @@ and open the template in the editor.
                     <td th:text="${itr.count}"></td>
                     <td th:text="${user.username}"></td>
                     <td>
-                        <ol type="a" style="padding: 0px 10px 0px 18px">
-                            <li th:each="role : ${user.roles}">
-                                <span th:text="${role.name}"></span>
+                        <ol type="I" style="padding: 0px 10px 0px 18px">
+                            <li class="ps-2" th:each="role : ${user.roles}">
+                                <span th:text="${role.name.toUpperCase()}"></span>
                             </li>
                         </ol>
                     </td>
                     <td>
-                        <!-- EDIT -->
-                        <a th:href="@{/user/{id} (id=${user.id})}">Edit</a>
-                        <!-- DELETE -->
-                        <form th:action="@{/user/{id} (id=${user.id})}" th:method="DELETE" onsubmit="return deleteForm(event)">
-                            <button type="submit">Hapus</button>
-                        </form>
+                        <div class="d-flex">
+                            <div class="me-1">
+                                <!-- EDIT -->
+                                <a class="btn btn-warning px-3" th:href="@{/user/{id} (id=${user.id})}">Edit</a>
+                            </div>
+                            <div class="me-1">
+                                <!-- DELETE -->
+                                <form th:action="@{/user/{id} (id=${user.id})}" th:method="DELETE" onsubmit="return deleteForm(event)">
+                                    <button class="btn btn-danger" type="submit">Hapus</button>
+                                </form>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
-        
-        <script>
-            console.log("hello world");
-            function deleteForm(e) {
-                let cek = confirm("Apakah anda ingin menghapus data ini?");
-                if(cek == true) {
-                    return true;
-                }
-                return false;
-            }
-        </script>
-    </body>
+    </div>
+</div>
+
+<th:block th:insert="mainLayout.html :: javascript-section "></th:block>
+<script>
+    console.log("hello world");
+    function deleteForm(e) {
+        let cek = confirm("Apakah anda ingin menghapus data ini?");
+        if (cek == true) {
+            return true;
+        }
+        return false;
+    }
+</script>
+</body>
 </html>

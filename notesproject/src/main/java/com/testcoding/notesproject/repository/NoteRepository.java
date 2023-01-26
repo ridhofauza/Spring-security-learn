@@ -6,10 +6,13 @@
 package com.testcoding.notesproject.repository;
 
 import com.testcoding.notesproject.model.Note;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author user
  */
-public interface NoteRepository extends JpaRepository<Note, Long> { }
+public interface NoteRepository extends JpaRepository<Note, Long> {
+    List<Note> findByUserId(Long id);
+}

@@ -36,6 +36,10 @@ public class NoteService {
     public List<NoteResponse> getAll() {
         return noteRespList(noteRepository.findAll());
     }
+    
+    public List<NoteResponse> getByUserId(Long userId) {
+        return noteRespList(noteRepository.findByUserId(userId));
+    }
 
     public NoteResponse getById(Long id) {
         Note note = noteRepository.findById(id)

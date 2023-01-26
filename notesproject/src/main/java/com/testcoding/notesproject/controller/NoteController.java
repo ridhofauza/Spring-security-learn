@@ -38,6 +38,11 @@ public class NoteController {
         return new ResponseEntity<>(noteService.getAll(), HttpStatus.OK);
     }
     
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<NoteResponse>> getAllByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(noteService.getByUserId(id), HttpStatus.OK);
+    }
+    
     @GetMapping("/{id}")
     public ResponseEntity<NoteResponse> getById(@PathVariable Long id) {
         return new ResponseEntity<>(noteService.getById(id), HttpStatus.OK);

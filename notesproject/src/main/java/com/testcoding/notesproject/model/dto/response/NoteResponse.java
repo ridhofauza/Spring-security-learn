@@ -23,6 +23,7 @@ public class NoteResponse {
     
     private Long id;
     private Long userId;
+    private String username;
     private String text;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

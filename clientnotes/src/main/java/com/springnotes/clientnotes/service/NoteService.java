@@ -10,6 +10,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -38,6 +39,30 @@ public class NoteService {
     public List<Note> getAllByUserId(Long userId) {
         return restTemplate.exchange(url + "/user/" + userId, HttpMethod.GET, null, 
             new ParameterizedTypeReference<List<Note>>(){}
+        ).getBody();
+    }
+    
+    public Note getById(Long id) {
+        return restTemplate.exchange(url + "/" + id, HttpMethod.GET, null,
+            new ParameterizedTypeReference<Note>(){}
+        ).getBody();
+    }
+    
+    public Note update(Long id, Note note) {
+        return restTemplate.exchange(url + "/" + id, HttpMethod.PUT, new HttpEntity(note),
+            new ParameterizedTypeReference<Note>(){}
+        ).getBody();
+    }
+    
+    public Note create(Note note) {
+        return restTemplate.exchange(url, HttpMethod.POST, new HttpEntity(note), 
+            new ParameterizedTypeReference<Note>(){}
+        ).getBody();
+    }
+    
+    public Note delete(Long id) {
+        return restTemplate.exchange(url + "/" + id, HttpMethod.DELETE, null,
+            new ParameterizedTypeReference<Note>(){}
         ).getBody();
     }
     

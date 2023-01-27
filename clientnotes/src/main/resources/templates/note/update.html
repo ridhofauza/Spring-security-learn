@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Update Note | Note App</title>
+    <th:block th:insert="mainLayout.html :: head-section"></th:block>
+</head>
+<body>
+<th:block th:insert="mainLayout.html :: navbar-section"></th:block>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-12 mt-5 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Update Note</h4>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/note/{id} (id=${note.id})}" th:method="PUT" th:object="${note}" onsubmit="return validate()">
+                        <div class="mb-3">
+                            <label class="form-label">Text</label>
+                            <textarea class="form-control" rows="3" th:field="*{text}" th:value="${note.text}" required></textarea>
+                            <input type="hidden" id="userId" th:field="*{userId}" th:value="${note.userId}">
+                            <input type="hidden" name="updatedAt">
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="mainLayout.html :: javascript-section"></th:block>
+<script>
+    function validate() {
+        const updatedAt = document.querySelector("input[name=updatedAt]");
+        const dateNow = new Date(new Date() - new Date().getTimezoneOffset()*60000).toISOString();
+        const date = dateNow.split("T")[0];
+        const time = dateNow.split("T")[1].substring(0, 5);
+        updatedAt.value = `${date} ${time}`;
+        console.log(updatedAt.value);
+        return true;
+    }
+</script>
+</body>
+</html>

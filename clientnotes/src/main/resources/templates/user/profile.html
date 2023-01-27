@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>User Profile | Note App</title>
+        <th:block th:insert="mainLayout.html :: head-section"></th:block>
+    </head>
+<body>
+<th:block th:insert="mainLayout.html :: navbar-section"></th:block>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-12 mt-5 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Profile User</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text">@</span>
+                            <div class="form-control" th:text="${user.username}"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Role</label>
+                        <ul style="list-style-type: none; padding: 0px">
+                            <li class="mb-2" th:each="role : ${user.roles}">
+                                <div class="input-group">
+                                    <div class="input-group-text"><span style="width: 5px; height: 5px; border: 1px solid black; border-radius: 100%; background-color: #000000;"></span></div>
+                                    <div class="form-control" th:text="${role.name}"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <div class="ms-auto">
+                            <a th:href="@{/user/{id} (id=${#session.getAttribute('userId')})}" class="btn btn-primary px-4">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="mainLayout.html :: javascript-section"></th:block>
+</body>
+</html>

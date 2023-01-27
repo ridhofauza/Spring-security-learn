@@ -84,6 +84,7 @@ public class NoteService {
             NoteResponse noteResp = new NoteResponse();
             noteResp.setId(note.getId());
             noteResp.setUserId(note.getUser().getId());
+            noteResp.setUsername(note.getUser().getUsername());
             noteResp.setText(note.getText());
             noteResp.setComments(note.getComments());
             noteResp.setCreatedAt(note.getCreatedAt());
@@ -97,6 +98,7 @@ public class NoteService {
         NoteResponse noteResp = new NoteResponse();
         noteResp.setId(note.getId());
         noteResp.setUserId(note.getUser().getId());
+        noteResp.setUsername(note.getUser().getUsername());
         noteResp.setText(note.getText());
         noteResp.setComments(note.getComments());
         noteResp.setCreatedAt(note.getCreatedAt());

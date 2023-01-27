@@ -5,7 +5,6 @@
  */
 package com.springnotes.clientnotes.model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,9 +21,10 @@ public class Note {
     
     private Long id;
     private Long userId;
+    private String username;
     private String text;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private String createdAt;
+    private String updatedAt;
     private List<Comment> comments;
     
 }

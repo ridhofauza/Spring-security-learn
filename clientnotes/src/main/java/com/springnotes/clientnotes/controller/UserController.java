@@ -54,10 +54,11 @@ public class UserController {
         return "redirect:/user";
     }
     
-    @ResponseBody
-    @GetMapping("/coba")
-    public Object getAll() {
-        return userService.getAll();
+    @GetMapping("/profile/{id}")
+    public String profile(@PathVariable Long id, Model model) {
+        User user = userService.getById(id);
+        model.addAttribute("user", user);
+        return "user/profile";
     }
     
 }

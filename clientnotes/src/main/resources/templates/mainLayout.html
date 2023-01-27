@@ -24,17 +24,21 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" th:href="@{/note/user/{userId} (userId=${#session.getAttribute('userId')})}">My Note</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                         <a class="nav-link active" aria-current="page" th:href="@{/user}">User</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- Profile -->
+                    <li class="nav-item" th:if="${#session.getAttribute('isLogin') == null}">
                         <a class="nav-link" th:href="@{/login}">Login</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" th:if="${#session.getAttribute('isLogin') == null}">
                         <a class="nav-link" th:href="@{/register}">Register</a>
                     </li>
                 </ul>
-                <div class="d-flex ms-auto">
+                <div class="d-flex flex-lg-row flex-column ms-auto" th:if="${#session.getAttribute('isLogin') != null}">
+                    <div class="navbar-nav nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/user/profile/{userId} (userId=${#session.getAttribute('userId')})}">Profile</a>
+                    </div>
                     <div class="navbar-nav nav-item">
                         <form th:action="@{/logout}" th:method="POST">
                             <button type="submit" class="btn nav-link active">Logout</button>
